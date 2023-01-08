@@ -2,6 +2,8 @@ extends Node2D
 
 
 var carPrefab = preload("res://Car.tscn")
+var staticTilePrefab = preload("res://Assets/tiles/StaticTile.tscn")
+
 
 var tiles : Dictionary = {}
 var SAVEPATH = "user://maps"
@@ -21,6 +23,10 @@ var holdingTile = false
 var heldTile : Object
 var clicking = false
 
+var editorMode = false
+
+onready var gameUI = $"%GameMenu"
+onready var editorUI = $"%EditorMenu"
 onready var tileSelector = $"%TileSelect"
 onready var tilesNode = $"%Tiles"
 onready var moneyLabel = $"%Money"
@@ -58,6 +64,24 @@ func init(levelName: String):
 	self.baseCarTimer = mapInfo["carTimer"]
 	self.money = mapInfo["initialMoney"]
 	self.metal = 0
+	updateMetal()
+	updateMoney()
+
+func init_leveleditor():
+	editorMode = true
+	set_process_input(true)
+	for tileType in Constants.tileTextures:
+		tileSelector.add_icon_item(Constants.tileTextures[tileType],"", tileType)
+	# for _i in range(Utils.SCREEN_X/Utils.GRID_SIZE):
+	# 	for _j in range(Utils.SCREEN_Y/Utils.GRID_SIZE):
+	# 		placeTile(Tile.Grass, Vector2(_i,_j))
+	#loadMap("%s.map" % mapName, true)
+	loadMap("title.map", false)
+	getSpawnPoints()
+	self.baseCarTimer = 99999
+	self.carTimer = 0
+	editorUI.visible = true
+	gameUI.visible = false
 
 func init_titlescreen():
 	set_process_input(false)
@@ -138,41 +162,53 @@ func placeTile(tile : int, pos : Vector2, flipH : bool = false, flipV : bool = f
 	if(tiles.has(pos)):
 		tiles[pos]["object"].queue_free()
 		tiles[pos].clear()
-	var newTile = Sprite.new()
-	newTile.centered = false
-	newTile.position = Utils.tileToPos(pos)
-	newTile.texture =  Constants.tileTextures[tile]
-	newTile.flip_h = flipH
-	newTile.flip_v = flipV
-	tilesNode.add_child(newTile)
-	tiles[pos] = {"object": newTile, "type": tile, "flip_h": flipH, "flip_v": flipV}
+	if tile in Constants.SolidTiles:
+		var newTile = staticTilePrefab.instance()
+		newTile.position = Utils.tileToPos(pos)
+		var sprite = newTile.get_node("Sprite")
+		sprite.texture =  Constants.tileTextures[tile]
+		sprite.flip_h = flipH
+		sprite.flip_v = flipV
+		tilesNode.add_child(newTile)
+		tiles[pos] = {"object": newTile, "type": tile, "flip_h": flipH, "flip_v": flipV}
+	else:
+		var newTile = Sprite.new()
+		newTile.centered = false
+		newTile.position = Utils.tileToPos(pos)
+		newTile.texture =  Constants.tileTextures[tile]
+		newTile.flip_h = flipH
+		newTile.flip_v = flipV
+		tilesNode.add_child(newTile)
+		tiles[pos] = {"object": newTile, "type": tile, "flip_h": flipH, "flip_v": flipV}
 
 
 func _on_SaveBtn_pressed():
 	saveMap()
 
 func _input(event):
-	if holdingTile && (event.is_action_pressed("click") || clicking):
-		clicking = true
-		var tilePos : Vector2 = Utils.getClosestTilePosToPos(get_viewport().get_mouse_position()) / Utils.GRID_SIZE
-		placeTile(tileSelector.selected, tilePos, heldTile.flip_h, heldTile.flip_v)
-	if holdingTile && (event.is_action_released("click") || event.is_action_pressed("right_click") ):
-		stopHolding()
-	if holdingTile && event.is_action_pressed("rotate"):
-		## 00 -> 01 -> 10 -> 11
-		if !heldTile.flip_h:
-			if !heldTile.flip_v:
-				heldTile.flip_v = true
+	if editorMode:
+		if holdingTile && (event.is_action_pressed("click") || clicking):
+			clicking = true
+			var tilePos : Vector2 = Utils.getClosestTilePosToPos(get_viewport().get_mouse_position()) / Utils.GRID_SIZE
+			placeTile(tileSelector.selected, tilePos, heldTile.flip_h, heldTile.flip_v)
+		if holdingTile && (event.is_action_released("click") || event.is_action_pressed("right_click") ):
+			stopHolding()
+		if holdingTile && event.is_action_pressed("rotate"):
+			## 00 -> 01 -> 10 -> 11
+			if !heldTile.flip_h:
+				if !heldTile.flip_v:
+					heldTile.flip_v = true
+				else:
+					heldTile.flip_v = false
+					heldTile.flip_h = true
 			else:
-				heldTile.flip_v = false
-				heldTile.flip_h = true
-		else:
-			if !heldTile.flip_v:
-				heldTile.flip_v = true
-			else:
-				heldTile.flip_h = false
-				heldTile.flip_v = false
-
+				if !heldTile.flip_v:
+					heldTile.flip_v = true
+				else:
+					heldTile.flip_h = false
+					heldTile.flip_v = false
+	else:
+		pass
 
 
 func stopHolding():
@@ -199,7 +235,12 @@ func _on_WipeBtn_pressed():
 
 
 func _on_ArrowBtn_pressed():
-    pass
+	var newTile = Sprite.new()
+	newTile.centered = false
+	newTile.texture = load("res://Assets/thumbnails/arrow.png")
+	tilesNode.add_child(newTile)
+	heldTile = newTile
+	holdingTile = true
 
 
 

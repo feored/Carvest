@@ -35,11 +35,12 @@ script = ExtResource( 1 )
 material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 2 )
 custom_styles/panel = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer"]
 margin_right = 512.0
-margin_bottom = 303.0
+margin_bottom = 288.0
 custom_constants/margin_right = 50
 custom_constants/margin_top = 50
 custom_constants/margin_left = 50
@@ -49,7 +50,7 @@ custom_constants/margin_bottom = 50
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 462.0
-margin_bottom = 253.0
+margin_bottom = 238.0
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
@@ -63,10 +64,9 @@ valign = 1
 
 [node name="MainMenu" type="CenterContainer" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 margin_top = 53.0
 margin_right = 412.0
-margin_bottom = 175.0
+margin_bottom = 184.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer/MarginContainer/VBoxContainer/MainMenu"]
 margin_left = 131.0
@@ -77,32 +77,33 @@ custom_constants/separation = 25
 
 [node name="PlayBtn" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer/MainMenu/VBoxContainer"]
 margin_right = 150.0
-margin_bottom = 24.0
+margin_bottom = 27.0
 rect_min_size = Vector2( 150, 24 )
 theme = ExtResource( 2 )
 text = "Play"
 
 [node name="EditBtn" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer/MainMenu/VBoxContainer"]
-margin_top = 49.0
+margin_top = 52.0
 margin_right = 150.0
-margin_bottom = 73.0
+margin_bottom = 79.0
 rect_min_size = Vector2( 150, 24 )
 theme = ExtResource( 2 )
 text = "Level Editor"
 
 [node name="SettingsBtn" type="Button" parent="UI/PanelContainer/MarginContainer/VBoxContainer/MainMenu/VBoxContainer"]
-margin_top = 98.0
+margin_top = 104.0
 margin_right = 150.0
-margin_bottom = 122.0
+margin_bottom = 131.0
 rect_min_size = Vector2( 150, 24 )
 theme = ExtResource( 2 )
 text = "Settings"
 
 [node name="LevelMenu" type="ScrollContainer" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 53.0
+visible = false
+margin_top = 204.0
 margin_right = 412.0
-margin_bottom = 203.0
+margin_bottom = 354.0
 rect_min_size = Vector2( 0, 150 )
 theme = ExtResource( 2 )
 

@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 Utils="*res://Scripts/Utils.gd"
 Constants="*res://Scripts/Constants.gd"
+Audio="*res://UI/Audio.tscn"
 
 [display]
 

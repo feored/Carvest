@@ -35,7 +35,10 @@ func _on_PlayBtn_pressed():
 	levelMenu.visible = true
 
 func _on_EditBtn_pressed():
-	print("edit")
+	var map = mapPrefab.instance()
+	get_tree().root.add_child(map)
+	map.init_leveleditor()
+	queue_free()
 
 func _on_SettingsBtn_pressed():
 	print("settings")

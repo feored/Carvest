@@ -2,25 +2,25 @@ extends Node
 
 
 enum Tile {
-	Grass,
-	Fountain,
-	Road_X,
-	Road_Y,
-	Cross,
-	Bend,
-	Tricross_X,
-	Tricross_Y
+    Grass,
+    Fountain,
+    Road_X,
+    Road_Y,
+    Cross,
+    Bend,
+    Tricross_X,
+    Tricross_Y
 }
 
 var tileTextures = {
-	Tile.Grass : load("res://Assets/tiles/grass.png"),
-	Tile.Fountain : load("res://Assets/tiles/fountain.png"),
-	Tile.Road_X: load("res://Assets/tiles/road_w.png"),
-	Tile.Road_Y: load("res://Assets/tiles/road_v.png"),
-	Tile.Cross: load("res://Assets/tiles/cross.png"),
-	Tile.Bend : load("res://Assets/tiles/bend.png"),
-	Tile.Tricross_X: load("res://Assets/tiles/tricross_w.png"),
-	Tile.Tricross_Y: load("res://Assets/tiles/tricross_h.png")
+    Tile.Grass : load("res://Assets/tiles/grass.png"),
+    Tile.Fountain : load("res://Assets/tiles/fountain.png"),
+    Tile.Road_X: load("res://Assets/tiles/road_w.png"),
+    Tile.Road_Y: load("res://Assets/tiles/road_v.png"),
+    Tile.Cross: load("res://Assets/tiles/cross.png"),
+    Tile.Bend : load("res://Assets/tiles/bend.png"),
+    Tile.Tricross_X: load("res://Assets/tiles/tricross_w.png"),
+    Tile.Tricross_Y: load("res://Assets/tiles/tricross_h.png")
 }
 
 
@@ -52,6 +52,11 @@ var RoadTiles = [
     Tile.Tricross_Y
 ]
 
+var SolidTiles = [
+    Tile.Fountain
+]
+
+
 var DirectionRotation = {
     Direction.Left : PI,
     Direction.Right: 0,
@@ -66,7 +71,7 @@ var LEVELS = {
             "description":"""POP 87
             More of a rest stop than a town.""",
             "unlocked": true,
-            "carTimer": 5,
+            "carTimer": 2,
             "initialMoney": 50
         },
         "map" : "seacity.map"

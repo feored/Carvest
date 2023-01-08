@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/8bit.mp3-f20cce86708ae3938cc761cdddb4c2ed.mp3str"
+
+[deps]
+
+source_file="res://Assets/8bit.mp3"
+dest_files=[ "res://.import/8bit.mp3-f20cce86708ae3938cc761cdddb4c2ed.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
