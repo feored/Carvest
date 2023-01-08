@@ -127,5 +127,18 @@ var LEVELS = {
 			"timeAllowed": 90
 		},
 		"map" : "swirl.map"
+	},
+	"Fountains": {
+		"info": {
+			"title": "Fountain City",
+			"description":"""POP 530\n
+			Who would need this many fountains?""",
+			"unlocked": true,
+			"carTimer": 1,
+			"initialMoney": 500,
+			"goalMetal": 500,
+			"timeAllowed": 120
+		},
+		"map" : "fountains.map"
 	}
 }
