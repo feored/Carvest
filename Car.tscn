@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/tiles/car2.png" type="Texture" id=1]
 [ext_resource path="res://Car.gd" type="Script" id=2]
 [ext_resource path="res://Assets/car/spark.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/car/explode.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 2 )
@@ -19,3 +20,13 @@ shape = SubResource( 1 )
 [node name="Particles2D" parent="." instance=ExtResource( 3 )]
 preprocess = 0.0
 local_coords = false
+
+[node name="fire" parent="." instance=ExtResource( 3 )]
+visible = false
+amount = 10
+lifetime = 0.25
+one_shot = false
+preprocess = 0.0
+explosiveness = 0.0
+local_coords = false
+texture = ExtResource( 4 )

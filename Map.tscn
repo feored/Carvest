@@ -1,10 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Map.gd" type="Script" id=1]
 [ext_resource path="res://UI/theme.tres" type="Theme" id=2]
 [ext_resource path="res://Assets/thumbnails/metal.png" type="Texture" id=3]
-[ext_resource path="res://Assets/thumbnails/arrow.png" type="Texture" id=4]
-[ext_resource path="res://Assets/tiles/StaticTile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/mods/arrow.png" type="Texture" id=4]
+[ext_resource path="res://Assets/mods/spikes.png" type="Texture" id=5]
+[ext_resource path="res://Assets/mods/portalA.tres" type="Texture" id=6]
+[ext_resource path="res://Assets/mods/wall.png" type="Texture" id=7]
+[ext_resource path="res://Assets/mods/portalB.tres" type="Texture" id=8]
+[ext_resource path="res://Assets/font/VGAfontdata.tres" type="DynamicFontData" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=2]
+outline_size = 2
+font_data = ExtResource( 9 )
 
 [node name="Map" type="Node2D"]
 script = ExtResource( 1 )
@@ -12,9 +25,8 @@ script = ExtResource( 1 )
 [node name="Tiles" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="StaticTile" parent="Tiles" instance=ExtResource( 5 )]
-
 [node name="UI" type="CanvasLayer" parent="."]
+pause_mode = 2
 
 [node name="EditorMenu" type="PanelContainer" parent="UI"]
 unique_name_in_owner = true
@@ -25,48 +37,55 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -58.0
 theme = ExtResource( 2 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/EditorMenu"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 53.0
-margin_bottom = 284.0
-custom_constants/separation = 36
+margin_right = 58.0
+margin_bottom = 288.0
+custom_constants/separation = 23
 alignment = 1
 
 [node name="SaveBtn" type="Button" parent="UI/EditorMenu/VBoxContainer"]
-margin_right = 48.0
-margin_bottom = 27.0
+margin_top = 5.0
+margin_right = 58.0
+margin_bottom = 32.0
 theme = ExtResource( 2 )
 text = "Save"
 
-[node name="LoadBtn" type="Button" parent="UI/EditorMenu/VBoxContainer"]
-margin_top = 63.0
-margin_right = 48.0
-margin_bottom = 90.0
-theme = ExtResource( 2 )
-text = "Load"
-
 [node name="TileSelect" type="OptionButton" parent="UI/EditorMenu/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 126.0
-margin_right = 48.0
-margin_bottom = 153.0
+margin_top = 55.0
+margin_right = 58.0
+margin_bottom = 82.0
 theme = ExtResource( 2 )
 
 [node name="PlaceBtn" type="Button" parent="UI/EditorMenu/VBoxContainer"]
-margin_top = 189.0
-margin_right = 48.4375
-margin_bottom = 216.0
+margin_top = 105.0
+margin_right = 58.0
+margin_bottom = 132.0
 theme = ExtResource( 2 )
 text = "Place"
 
 [node name="WipeBtn" type="Button" parent="UI/EditorMenu/VBoxContainer"]
-margin_top = 252.0
-margin_right = 48.0
-margin_bottom = 279.0
+margin_top = 155.0
+margin_right = 58.0
+margin_bottom = 182.0
 theme = ExtResource( 2 )
 text = "Wipe"
+
+[node name="LoadBtn" type="Button" parent="UI/EditorMenu/VBoxContainer"]
+margin_top = 205.0
+margin_right = 58.0
+margin_bottom = 232.0
+theme = ExtResource( 2 )
+text = "Load"
+
+[node name="PlayBtn" type="Button" parent="UI/EditorMenu/VBoxContainer"]
+margin_top = 255.0
+margin_right = 58.0
+margin_bottom = 282.0
+theme = ExtResource( 2 )
+text = "Play"
 
 [node name="GameMenu" type="PanelContainer" parent="UI"]
 unique_name_in_owner = true
@@ -79,7 +98,7 @@ theme = ExtResource( 2 )
 [node name="VBoxContainer" type="HBoxContainer" parent="UI/GameMenu"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 507.0
+margin_right = 510.0
 margin_bottom = 32.0
 
 [node name="Money" type="Label" parent="UI/GameMenu/VBoxContainer"]
@@ -97,7 +116,7 @@ margin_bottom = 27.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/GameMenu/VBoxContainer"]
 margin_left = 43.0
-margin_right = 87.0
+margin_right = 117.0
 margin_bottom = 27.0
 
 [node name="TextureRect" type="TextureRect" parent="UI/GameMenu/VBoxContainer/HBoxContainer"]
@@ -109,30 +128,118 @@ stretch_mode = 6
 [node name="Metal" type="Label" parent="UI/GameMenu/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 margin_left = 20.0
-margin_right = 44.0
+margin_right = 74.0
 margin_bottom = 27.0
 size_flags_vertical = 1
 custom_colors/font_color = Color( 0.756863, 0.756863, 0.756863, 1 )
-text = "219"
+text = "219/505"
 align = 1
 valign = 1
 
 [node name="VSeparator" type="VSeparator" parent="UI/GameMenu/VBoxContainer"]
-margin_left = 91.0
-margin_right = 95.0
+margin_left = 121.0
+margin_right = 125.0
 margin_bottom = 27.0
 
 [node name="ArrowBtn" type="Button" parent="UI/GameMenu/VBoxContainer"]
-margin_left = 99.0
-margin_right = 139.0
+unique_name_in_owner = true
+margin_left = 129.0
+margin_right = 174.0
 margin_bottom = 27.0
-rect_min_size = Vector2( 40, 0 )
+rect_min_size = Vector2( 45, 0 )
 custom_colors/font_color = Color( 0.968627, 0.968627, 0.968627, 1 )
-text = "$5"
+text = "$50"
 icon = ExtResource( 4 )
 align = 0
 icon_align = 2
 expand_icon = true
+
+[node name="SpikesBtn" type="Button" parent="UI/GameMenu/VBoxContainer"]
+unique_name_in_owner = true
+margin_left = 178.0
+margin_right = 223.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 45, 0 )
+custom_colors/font_color = Color( 0.968627, 0.968627, 0.968627, 1 )
+text = "$25"
+icon = ExtResource( 5 )
+align = 0
+icon_align = 2
+expand_icon = true
+
+[node name="PortalA" type="Button" parent="UI/GameMenu/VBoxContainer"]
+unique_name_in_owner = true
+margin_left = 227.0
+margin_right = 282.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 55, 0 )
+custom_colors/font_color = Color( 0.968627, 0.968627, 0.968627, 1 )
+text = "$100"
+icon = ExtResource( 6 )
+align = 0
+icon_align = 2
+expand_icon = true
+
+[node name="PortalB" type="Button" parent="UI/GameMenu/VBoxContainer"]
+unique_name_in_owner = true
+margin_left = 286.0
+margin_right = 341.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 55, 0 )
+custom_colors/font_color = Color( 0.968627, 0.968627, 0.968627, 1 )
+text = "$100"
+icon = ExtResource( 8 )
+align = 0
+icon_align = 2
+expand_icon = true
+
+[node name="WallBtn" type="Button" parent="UI/GameMenu/VBoxContainer"]
+unique_name_in_owner = true
+margin_left = 345.0
+margin_right = 390.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 45, 0 )
+custom_colors/font_color = Color( 0.968627, 0.968627, 0.968627, 1 )
+text = "$10"
+icon = ExtResource( 7 )
+align = 0
+icon_align = 2
+expand_icon = true
+
+[node name="Time" type="PanelContainer" parent="UI/GameMenu/VBoxContainer"]
+margin_left = 394.0
+margin_right = 505.0
+margin_bottom = 27.0
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/GameMenu/VBoxContainer/Time"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 106.0
+margin_bottom = 22.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/GameMenu/VBoxContainer/Time/CenterContainer"]
+margin_right = 101.0
+margin_bottom = 17.0
+
+[node name="timeLabel" type="Label" parent="UI/GameMenu/VBoxContainer/Time/CenterContainer/HBoxContainer2"]
+margin_right = 77.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 75, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "TIME LEFT:"
+align = 1
+valign = 1
+
+[node name="TimeVal" type="Label" parent="UI/GameMenu/VBoxContainer/Time/CenterContainer/HBoxContainer2"]
+unique_name_in_owner = true
+margin_left = 81.0
+margin_right = 101.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 20, 0 )
+custom_colors/font_color = Color( 0.796078, 0.137255, 0.137255, 1 )
+text = "59"
+align = 1
+valign = 1
 
 [node name="Menu" type="PanelContainer" parent="UI"]
 unique_name_in_owner = true
@@ -158,9 +265,9 @@ margin_bottom = 139.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Menu/CenterContainer"]
 margin_left = 99.0
-margin_top = 28.0
+margin_top = 2.0
 margin_right = 178.0
-margin_bottom = 106.0
+margin_bottom = 131.0
 custom_constants/separation = 24
 
 [node name="MainMenuBtn" type="Button" parent="UI/Menu/CenterContainer/VBoxContainer"]
@@ -168,14 +275,171 @@ margin_right = 79.1875
 margin_bottom = 27.0
 text = "Main Menu"
 
-[node name="ContinueBtn" type="Button" parent="UI/Menu/CenterContainer/VBoxContainer"]
+[node name="AudioBtn" type="Button" parent="UI/Menu/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 margin_top = 51.0
 margin_right = 79.0
 margin_bottom = 78.0
+toggle_mode = true
+pressed = true
+text = "Audio ON"
+
+[node name="ContinueBtn" type="Button" parent="UI/Menu/CenterContainer/VBoxContainer"]
+margin_top = 102.0
+margin_right = 79.0
+margin_bottom = 129.0
 text = "Continue"
 
+[node name="GameOverMenu" type="PanelContainer" parent="UI"]
+unique_name_in_owner = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -144.0
+margin_top = -72.0
+margin_right = 144.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 288, 144 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/GameOverMenu"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 283.0
+margin_bottom = 139.0
+
+[node name="Success" type="VBoxContainer" parent="UI/GameOverMenu/CenterContainer"]
+unique_name_in_owner = true
+visible = false
+margin_left = 39.0
+margin_top = 2.0
+margin_right = 239.0
+margin_bottom = 131.0
+custom_constants/separation = 24
+
+[node name="Label" type="Label" parent="UI/GameOverMenu/CenterContainer/Success"]
+margin_right = 200.0
+margin_bottom = 17.0
+custom_colors/font_color = Color( 0.435294, 0.682353, 0.333333, 1 )
+text = "Congratulations!"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="UI/GameOverMenu/CenterContainer/Success"]
+margin_top = 41.0
+margin_right = 200.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 200, 0 )
+text = "The harvest was good this year."
+align = 1
+autowrap = true
+
+[node name="GameOverMenuBtn" type="Button" parent="UI/GameOverMenu/CenterContainer/Success"]
+margin_top = 102.0
+margin_right = 200.0
+margin_bottom = 129.0
+text = "Menu"
+
+[node name="Failure" type="VBoxContainer" parent="UI/GameOverMenu/CenterContainer"]
+unique_name_in_owner = true
+visible = false
+margin_left = 39.0
+margin_top = 2.0
+margin_right = 239.0
+margin_bottom = 131.0
+custom_constants/separation = 24
+
+[node name="Label" type="Label" parent="UI/GameOverMenu/CenterContainer/Failure"]
+margin_right = 200.0
+margin_bottom = 17.0
+custom_colors/font_color = Color( 0.796078, 0.137255, 0.137255, 1 )
+text = "GAME OVER"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="UI/GameOverMenu/CenterContainer/Failure"]
+margin_top = 41.0
+margin_right = 200.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 200, 0 )
+text = "You have failed to cause enough mayhem."
+align = 1
+autowrap = true
+
+[node name="GameOverMenuBtn" type="Button" parent="UI/GameOverMenu/CenterContainer/Failure"]
+margin_top = 102.0
+margin_right = 200.0
+margin_bottom = 129.0
+text = "Menu"
+
+[node name="Explanation" type="PanelContainer" parent="UI"]
+unique_name_in_owner = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -205.0
+margin_top = -79.5
+margin_right = 205.0
+margin_bottom = 79.5
+rect_min_size = Vector2( 288, 144 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Explanation"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 405.0
+margin_bottom = 154.0
+
+[node name="Success" type="VBoxContainer" parent="UI/Explanation/CenterContainer"]
+margin_right = 400.0
+margin_bottom = 149.0
+custom_constants/separation = 24
+
+[node name="Label" type="Label" parent="UI/Explanation/CenterContainer/Success"]
+margin_right = 400.0
+margin_bottom = 17.0
+custom_colors/font_color = Color( 0.523438, 0.0756531, 0.0756531, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "CARVEST"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="UI/Explanation/CenterContainer/Success"]
+margin_top = 41.0
+margin_right = 400.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 400, 0 )
+text = "The god of metal has sent you, his angel, down to earth to harvest the metal humans keep taking out of the ground..."
+align = 1
+autowrap = true
+
+[node name="OKExplanation" type="Button" parent="UI/Explanation/CenterContainer/Success"]
+margin_top = 122.0
+margin_right = 400.0
+margin_bottom = 149.0
+text = "OK"
+
 [connection signal="pressed" from="UI/EditorMenu/VBoxContainer/SaveBtn" to="." method="_on_SaveBtn_pressed"]
-[connection signal="pressed" from="UI/EditorMenu/VBoxContainer/LoadBtn" to="." method="_on_LoadBtn_pressed"]
 [connection signal="pressed" from="UI/EditorMenu/VBoxContainer/PlaceBtn" to="." method="_on_PlaceBtn_pressed"]
 [connection signal="pressed" from="UI/EditorMenu/VBoxContainer/WipeBtn" to="." method="_on_WipeBtn_pressed"]
+[connection signal="pressed" from="UI/EditorMenu/VBoxContainer/LoadBtn" to="." method="_on_LoadBtn_pressed"]
+[connection signal="pressed" from="UI/EditorMenu/VBoxContainer/PlayBtn" to="." method="_on_PlayBtn_pressed"]
 [connection signal="pressed" from="UI/GameMenu/VBoxContainer/ArrowBtn" to="." method="_on_ArrowBtn_pressed"]
+[connection signal="pressed" from="UI/GameMenu/VBoxContainer/SpikesBtn" to="." method="_on_SpikesBtn_pressed"]
+[connection signal="pressed" from="UI/GameMenu/VBoxContainer/PortalA" to="." method="_on_PortalA_pressed"]
+[connection signal="pressed" from="UI/GameMenu/VBoxContainer/PortalB" to="." method="_on_PortalB_pressed"]
+[connection signal="pressed" from="UI/GameMenu/VBoxContainer/WallBtn" to="." method="_on_WallBtn_pressed"]
+[connection signal="pressed" from="UI/Menu/CenterContainer/VBoxContainer/MainMenuBtn" to="." method="_on_MainMenuBtn_pressed"]
+[connection signal="toggled" from="UI/Menu/CenterContainer/VBoxContainer/AudioBtn" to="." method="_on_AudioBtn_toggled"]
+[connection signal="pressed" from="UI/Menu/CenterContainer/VBoxContainer/ContinueBtn" to="." method="_on_ContinueBtn_pressed"]
+[connection signal="pressed" from="UI/GameOverMenu/CenterContainer/Success/GameOverMenuBtn" to="." method="_on_GameOverMenuBtn_pressed"]
+[connection signal="pressed" from="UI/GameOverMenu/CenterContainer/Failure/GameOverMenuBtn" to="." method="_on_GameOverMenuBtn_pressed"]
+[connection signal="pressed" from="UI/Explanation/CenterContainer/Success/OKExplanation" to="." method="_on_OKExplanation_pressed"]

@@ -17,9 +17,15 @@ var rng = RandomNumberGenerator.new()
 func tileToPos(tile:  Vector2) -> Vector2:
 	return GRID_SIZE * tile
 
-func getClosestTilePosToPos(pos : Vector2) -> Vector2:
-	var rest_x = (int(pos.x) / GRID_SIZE) * GRID_SIZE
-	var rest_y = (int(pos.y) / GRID_SIZE) * GRID_SIZE
+func modTileToPos(tile:  Vector2) -> Vector2:
+    return 8 * tile
+
+func getVectorHurt(vel : Vector2):
+    return (abs(vel.x) + abs(vel.y))
+
+func getClosestTilePosToPos(pos : Vector2, grid_size : int = GRID_SIZE) -> Vector2:
+	var rest_x = (int(pos.x) / grid_size) * grid_size
+	var rest_y = (int(pos.y) / grid_size) * grid_size
 	return Vector2(rest_x, rest_y)
 
 func getClosestTileToPos(pos : Vector2) -> Vector2:
@@ -51,6 +57,15 @@ func _ready():
 
 func isOutOfBounds(tile : Vector2) -> bool:
 	return tile.x < 0 || tile.x > SCREEN_X_GRID || tile.y < 0 || tile.y > SCREEN_Y_GRID
+
+
+func getDirectionFromRotation(rot : float) -> int:
+    var selectedDirection = 0
+    for dir in Constants.DirectionRotation.keys():
+        if is_equal_approx(fposmod(rot, 2*PI), Constants.DirectionRotation[dir]):
+            selectedDirection = dir
+            break
+    return selectedDirection
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
