@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/font/VGAfontdata.tres" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/simplebox.tres" type="StyleBox" id=2]
+[ext_resource path="res://UI/LevelUI.gd" type="Script" id=3]
+[ext_resource path="res://UI/simpleboxpressed.tres" type="StyleBox" id=4]
+[ext_resource path="res://UI/simpleboxhover.tres" type="StyleBox" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="DynamicFont" id=8]
+size = 14
+outline_size = 2
+outline_color = Color( 0.564706, 0.145098, 0.145098, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 12
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="Level" type="PanelContainer"]
+margin_left = 146.0
+margin_right = 246.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 100, 50 )
+custom_styles/panel = SubResource( 12 )
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 110.0
+margin_bottom = 130.0
+size_flags_horizontal = 6
+size_flags_vertical = 7
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_right = 110.0
+margin_bottom = 25.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 2 )
+text = "Sea City"
+icon_align = 2
+expand_icon = true
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 29.0
+margin_right = 110.0
+margin_bottom = 130.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 105.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 5
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 11 )
+text = "POP 87
+
+More of a rest
+stop than a
+town."
+align = 1
+autowrap = true
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]

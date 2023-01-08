@@ -1,0 +1,40 @@
+[gd_resource type="Theme" load_steps=10 format=2]
+
+[ext_resource path="res://UI/simpleboxpressed.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/font/vgadefault.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UI/simplebox.tres" type="StyleBox" id=3]
+[ext_resource path="res://UI/simpleboxhover.tres" type="StyleBox" id=4]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.262745, 0.0196078, 0.0196078, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.403922, 0.129412, 0.129412, 1 )
+
+[sub_resource type="StyleBoxLine" id=7]
+color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+thickness = 5
+
+[sub_resource type="StyleBoxLine" id=8]
+color = Color( 0.435294, 0.435294, 0.435294, 1 )
+thickness = 5
+
+[sub_resource type="StyleBoxLine" id=9]
+color = Color( 0.462745, 0.462745, 0.462745, 1 )
+grow_begin = -4.0
+grow_end = -4.0
+vertical = true
+
+[resource]
+default_font = ExtResource( 2 )
+Button/colors/font_color = Color( 0.458824, 0, 0, 1 )
+Button/styles/hover = ExtResource( 4 )
+Button/styles/normal = ExtResource( 3 )
+Button/styles/pressed = ExtResource( 1 )
+HScrollBar/styles/grabber = SubResource( 5 )
+HScrollBar/styles/grabber_highlight = SubResource( 6 )
+HScrollBar/styles/scroll = SubResource( 7 )
+HScrollBar/styles/scroll_focus = SubResource( 8 )
+Label/fonts/font = ExtResource( 2 )
+PanelContainer/styles/panel = ExtResource( 3 )
+VSeparator/styles/separator = SubResource( 9 )
