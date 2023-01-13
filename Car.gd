@@ -77,9 +77,9 @@ func hit(collision):
 func applyMod(mod: Dictionary):
 	match mod["type"]:
 		Constants.Mod.Boost:
-			velocity = velocity + Vector2(velocity.length(), 0).rotated(Constants.DirectionRotation[mod["direction"]])
+			velocity = velocity + Vector2(velocity.length(), 0).rotated(Constants.DirectionRotation[mod["direction"]])*2
 		Constants.Mod.Spikes:
-			if !is_equal_approx(fposmod(Constants.DirectionRotation[direction],PI), fposmod(Constants.DirectionRotation[mod["direction"]], PI)):
+			#if !is_equal_approx(fposmod(Constants.DirectionRotation[direction],PI), fposmod(Constants.DirectionRotation[mod["direction"]], PI)):
 				velocity = (velocity * 0.25).rotated(Utils.rng.randf()-0.5 * PI)
 		Constants.Mod.Portal_A:
 			var otherPortals = []
@@ -109,8 +109,8 @@ func _physics_process(delta):
 	if life < 6:
 		fire.emitting = true
 		fire.visible = true
-	if life < 0:
-		queue_free()
+	#if life < 0:
+	#	queue_free()
 
 
 	var newModPos = Utils.getClosestTilePosToPos(position, 8)/8

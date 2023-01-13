@@ -16,7 +16,7 @@ var mapName = "last"
 var money : int = 50
 var metal : float = 0
 
-var baseCarTimer = 1
+var baseCarTimer = 0.5
 var carTimer = baseCarTimer
 var elapsedTime = carTimer
 var spawnPoints = []
@@ -169,7 +169,7 @@ func _process(delta):
 		var carTile = spawnPoints[Utils.rng.randi() % spawnPoints.size()]
 		car.place(carTile, Vector2(32, 10))
 		add_child(car)
-		carTimer = Utils.rng.randfn(self.baseCarTimer)
+		carTimer = self.baseCarTimer #Utils.rng.randf() * self.baseCarTimer
 	if holdingMod:
 		heldMod.position  = modOffset + Utils.getClosestTilePosToPos(get_viewport().get_mouse_position(), 8)
 	if holdingTile:

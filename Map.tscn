@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Map.gd" type="Script" id=1]
 [ext_resource path="res://UI/theme.tres" type="Theme" id=2]
-[ext_resource path="res://Assets/thumbnails/metal.png" type="Texture" id=3]
+[ext_resource path="res://Assets/ui/metal.png" type="Texture" id=3]
 [ext_resource path="res://Assets/mods/arrow.png" type="Texture" id=4]
 [ext_resource path="res://Assets/mods/spikes.png" type="Texture" id=5]
 [ext_resource path="res://Assets/mods/portalA.tres" type="Texture" id=6]
@@ -200,7 +200,7 @@ margin_right = 390.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 45, 0 )
 custom_colors/font_color = Color( 0.968627, 0.968627, 0.968627, 1 )
-text = "$10"
+text = "$25"
 icon = ExtResource( 7 )
 align = 0
 icon_align = 2

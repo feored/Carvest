@@ -85,7 +85,7 @@ var modCosts = {
 	Mod.Spikes: 25,
 	Mod.Portal_A: 100,
 	Mod.Portal_B:100,
-	Mod.Wall:10
+	Mod.Wall:25
 }
 
 var LEVELS = {
@@ -95,9 +95,9 @@ var LEVELS = {
 			"description":"""POP 87\n
 			More of a rest stop than a town.""",
 			"unlocked": true,
-			"carTimer": 2,
+			"carTimer": 1,
 			"initialMoney": 200,
-			"goalMetal": 50,
+			"goalMetal": 100,
 			"timeAllowed": 60
 		},
 		"map" : "seacity.map"
@@ -108,9 +108,9 @@ var LEVELS = {
 			"description":"""POP 0\n
 			The highway. What else do you need to know?""",
 			"unlocked": true,
-			"carTimer": 1,
+			"carTimer": 0.5,
 			"initialMoney": 500,
-			"goalMetal": 250,
+			"goalMetal": 300,
 			"timeAllowed": 90
 		},
 		"map" : "highway.map"
@@ -121,10 +121,10 @@ var LEVELS = {
 			"description":"""POP 260\n
 			The devil himself must have designed this town.""",
 			"unlocked": true,
-			"carTimer": 2,
-			"initialMoney": 350,
-			"goalMetal": 250,
-			"timeAllowed": 90
+			"carTimer": 0.5,
+			"initialMoney": 600,
+			"goalMetal": 600,
+			"timeAllowed": 180
 		},
 		"map" : "swirl.map"
 	},
@@ -134,9 +134,9 @@ var LEVELS = {
 			"description":"""POP 530\n
 			Who would need this many fountains?""",
 			"unlocked": true,
-			"carTimer": 1,
+			"carTimer": 0.5,
 			"initialMoney": 500,
-			"goalMetal": 500,
+			"goalMetal": 1000,
 			"timeAllowed": 120
 		},
 		"map" : "fountains.map"
